@@ -97,7 +97,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Include your email.js file -->
     <script src="email.js"></script>
-    <!-- JavaScript for digital clock -->
+    <!-- JavaScript for clock -->
     <script>
         // Digital clock using jQuery
         $(document).ready(function() {
@@ -108,6 +108,20 @@
             }
             setInterval(updateClock, 1000);
         });
+
+        // Analog clock
+        var canvas = document.getElementById("analog-clock");
+        var ctx = canvas.getContext("2d");
+        var radius = canvas.height / 2;
+        ctx.translate(radius, radius);
+        radius = radius * 0.90;
+        setInterval(drawClock, 1000);
+
+        function drawClock() {
+            drawFace(ctx, radius);
+            drawNumbers(ctx, radius);
+            drawTime(ctx, radius);
+        }
     </script>
 
     <!-- Function to show/hide email -->
@@ -142,34 +156,41 @@
 
     <!-- JavaScript to remember client's last visit -->
     <script>
+        function setLastVisitCookie() {
+            var now = new Date();
+            var formattedDate = now.toLocaleString();
+            document.cookie = "lastVisit=" + formattedDate + "; path=/";
+        }
+
+        function getLastVisitCookie() {
+            var cookieArray = document.cookie.split(';');
+            for (var i = 0; i < cookieArray.length; i++) {
+                var cookie = cookieArray[i];
+                while (cookie.charAt(0) === ' ') {
+                    cookie = cookie.substring(1);
+                }
+                if (cookie.indexOf('lastVisit=') === 0) {
+                    return cookie.substring('lastVisit='.length, cookie.length);
+                }
+            }
+            return null;
+        }
+
         // Check if localStorage is supported
         if (typeof(Storage) !== "undefined") {
-            var lastVisit = localStorage.getItem("lastVisit");
-            if (lastVisit) {
-                console.log("Welcome back! Your last visit was on: " + lastVisit);
+            var lastVisit = getLastVisitCookie();
+            if (lastVisit === null) {
+                // First-time visit
+                alert("Welcome to my homepage!");
             } else {
-                console.log("Welcome to our website! This is your first visit.");
+                // Returning visitor
+                alert("Welcome back! Your last visit was " + lastVisit);
             }
-            // Save current date and time as last visit
-            localStorage.setItem("lastVisit", new Date());
+            // Update last visit time
+            setLastVisitCookie();
         } else {
-            console.log("Sorry, your browser does not support web storage...");
-        }
-    </script>
-
-    <!-- JavaScript for analog clock -->
-    <script>
-        var canvas = document.getElementById("analog-clock");
-        var ctx = canvas.getContext("2d");
-        var radius = canvas.height / 2;
-        ctx.translate(radius, radius);
-        radius = radius * 0.90;
-        setInterval(drawClock, 1000);
-
-        function drawClock() {
-            drawFace(ctx, radius);
-            drawNumbers(ctx, radius);
-            drawTime(ctx, radius);
+            // Browser doesn't support localStorage
+            console.error("Sorry, your browser does not support web storage...");
         }
     </script>
 </body>
