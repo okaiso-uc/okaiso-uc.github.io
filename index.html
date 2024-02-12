@@ -213,7 +213,7 @@
     <!-- Fetch joke from jokeapi every minute -->
     <script>
         setInterval(function() {
-            fetch('https://v2.jokeapi.dev/joke/Any?type=single')
+            fetch('https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit')
             .then(response => response.json())
             .then(data => {
                 console.log(data.joke);
