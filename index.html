@@ -85,7 +85,7 @@
     </section>
     <section id="joke">
         <h2>Joke of the Day</h2>
-        <p id="jokeContent">Loading...</p>
+        <p id="jokeContent"></p>
     </section>
     <section id="analog-clock">
         <h2>Analog Clock</h2>
@@ -220,11 +220,16 @@
         }, 60000); // Fetch a new joke every minute (60 seconds)
     </script>
 
-    <!-- Fetch weather information from weatherbit.io -->
+    <!-- Fetch weather information from OpenWeatherMap API -->
     <script>
-        // Simulated weather information
-        var weatherInfo = "Current temperature: 25°C, Weather: Sunny";
-        $("#weatherInfo").text(weatherInfo);
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=London&appid=YOUR_API_KEY&units=metric')
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            var weatherInfo = "Temperature: " + data.main.temp + "°C, Weather: " + data.weather[0].description;
+            $("#weatherInfo").text(weatherInfo);
+        })
+        .catch(error => console.error('Error fetching weather:', error));
     </script>
 
     <!-- JavaScript to remember client's last visit -->
