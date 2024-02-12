@@ -212,16 +212,16 @@
 
     <!-- Fetch joke from jokeapi every minute -->
     <script>
-        setInterval(function() {
-            fetch('https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data.joke);
-                document.getElementById('jokeContent').textContent = data.joke;
-            })
-            .catch(error => console.error('Error fetching joke:', error));
-        }, 60000); // Fetch a new joke every minute (60 seconds)
-    </script>
+        <script>
+        // Fetch joke from JokeAPI and display on page load
+        $(document).ready(function() {
+            $.get("https://v2.jokeapi.dev/joke/Programming?type=single", function(result) {
+                console.log("From jokeAPI:" + JSON.stringify(result));
+                $("#response").html("A programming joke of the day: " + result.joke);
+            });
+        });
+    </script> // Fetch a new joke every minute (60 seconds)
+
 
     <!-- Fetch weather information from weatherbit.io -->
     <script>
