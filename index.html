@@ -85,15 +85,15 @@
     </section>
     <section id="joke">
         <h2>Joke of the Day</h2>
-        <p id="jokeText">Loading joke...</p>
+        <p id="jokeContent">Loading...</p>
     </section>
     <section id="analog-clock">
         <h2>Analog Clock</h2>
-        <canvas id="clockCanvas" width="150" height="150" style="background-color: #ddd;"></canvas>
+        <canvas id="analogClock" width="150" height="150" style="background-color:#999"></canvas>
     </section>
     <section id="weather">
         <h2>Weather Information</h2>
-        <p id="weatherInfo">Loading weather information...</p>
+        <p id="weatherInfo">Loading...</p>
     </section>
     <footer>
         <p>&copy; 2024 Seth Okai</p>
@@ -105,30 +105,156 @@
 
     <!-- jQuery library -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Include your email.js file -->
-    <script src="email.js"></script>
     <!-- JavaScript for clock -->
-    <script src="clock.js"></script>
+    <script>
+        // Digital clock using jQuery
+        $(document).ready(function() {
+            function updateClock() {
+                var now = new Date();
+                var time = now.toLocaleTimeString();
+                $('#clock').text(time);
+            }
+            setInterval(updateClock, 1000);
+        });
+
+        // Analog clock
+        var canvas = document.getElementById("analogClock");
+        var ctx = canvas.getContext("2d");
+        var radius = canvas.height / 2;
+        ctx.translate(radius, radius);
+        radius = radius * 0.90;
+
+        function drawClock() {
+            drawFace(ctx, radius);
+            drawNumbers(ctx, radius);
+            drawTime(ctx, radius);
+        }
+
+        function drawFace(ctx, radius) {
+            var grad;
+            ctx.beginPath();
+            ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
+            grad.addColorStop(0, '#333');
+            grad.addColorStop(0.5, 'white');
+            grad.addColorStop(1, '#333');
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = radius * 0.1;
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
+            ctx.fillStyle = '#333';
+            ctx.fill();
+        }
+
+        function drawNumbers(ctx, radius) {
+            var ang;
+            var num;
+            ctx.font = radius * 0.15 + "px arial";
+            ctx.textBaseline = "middle";
+            ctx.textAlign = "center";
+            for (num = 1; num < 13; num++) {
+                ang = num * Math.PI / 6;
+                ctx.rotate(ang);
+                ctx.translate(0, -radius * 0.85);
+                ctx.rotate(-ang);
+                ctx.fillText(num.toString(), 0, 0);
+                ctx.rotate(ang);
+                ctx.translate(0, radius * 0.85);
+                ctx.rotate(-ang);
+            }
+        }
+
+        function drawTime(ctx, radius) {
+            var now = new Date();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+            // Hour
+            hour = hour % 12;
+            hour = (hour * Math.PI / 6) +
+                (minute * Math.PI / (6 * 60)) +
+                (second * Math.PI / (360 * 60));
+            drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+            // Minute
+            minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
+            drawHand(ctx, minute, radius * 0.8, radius * 0.07);
+            // Second
+            second = (second * Math.PI / 30);
+            drawHand(ctx, second, radius * 0.9, radius * 0.02);
+        }
+
+        function drawHand(ctx, pos, length, width) {
+            ctx.beginPath();
+            ctx.lineWidth = width;
+            ctx.lineCap = "round";
+            ctx.moveTo(0, 0);
+            ctx.rotate(pos);
+            ctx.lineTo(0, -length);
+            ctx.stroke();
+            ctx.rotate(-pos);
+        }
+
+        setInterval(drawClock, 1000);
+
+        // Function to show/hide email
+        function showhideEmail() {
+            var emailSpan = document.getElementById('email');
+            if (emailSpan.textContent === 'Show my email') {
+                emailSpan.textContent = 'okaiso@mail.uc.edu';
+            } else {
+                emailSpan.textContent = 'Show my email';
+            }
+        }
+    </script>
+
     <!-- Fetch joke from jokeapi every minute -->
     <script>
         setInterval(function() {
             fetch('https://v2.jokeapi.dev/joke/Any?type=single')
             .then(response => response.json())
             .then(data => {
-                document.getElementById('jokeText').innerText = data.joke;
+                console.log(data.joke);
+                document.getElementById('jokeContent').textContent = data.joke;
             })
             .catch(error => console.error('Error fetching joke:', error));
         }, 60000); // Fetch a new joke every minute (60 seconds)
     </script>
+
     <!-- Fetch weather information from weatherbit.io -->
     <script>
         fetch('https://api.weatherbit.io/v2.0/current?city=London&key=YOUR_API_KEY')
         .then(response => response.json())
         .then(data => {
-            document.getElementById('weatherInfo').innerText = `Current temperature: ${data.data[0].temp}°C`;
+            console.log(data);
+            // Process and display weather information as needed
+            document.getElementById('weatherInfo').textContent = 'Weather information';
         })
         .catch(error => console.error('Error fetching weather:', error));
     </script>
+
+    <!-- JavaScript to remember client's last visit -->
+    <script>
+        // Check if localStorage is supported
+        if (typeof(Storage) !== "undefined") {
+            var lastVisit = localStorage.getItem("lastVisit");
+            if (lastVisit === null) {
+                // First-time visit
+                alert("Welcome to my homepage!");
+            } else {
+                // Returning visitor
+                alert("Welcome back! Your last visit was " + lastVisit);
+            }
+            // Update last visit time
+            var now = new Date();
+            var formattedDate = now.toLocaleString();
+            localStorage.setItem("lastVisit", formattedDate);
+        } else {
+            // Browser doesn't support localStorage
+            console.error("Sorry, your browser does not support web storage...");
+        }
+    </script>
 </body>
 </html>
-
