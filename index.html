@@ -213,26 +213,18 @@
     <!-- Fetch joke from jokeapi every minute -->
     <script>
         setInterval(function() {
-            fetch('https://v2.jokeapi.dev/joke/Any?type=single')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data.joke);
-                document.getElementById('jokeContent').textContent = data.joke;
-            })
-            .catch(error => console.error('Error fetching joke:', error));
+            $.get("https://v2.jokeapi.dev/joke/Programming?type=single", function(result) {
+                console.log("From jokeAPI:" + JSON.stringify(result));
+                $("#jokeContent").html("Joke of the Day: " + result.joke);
+            });
         }, 60000); // Fetch a new joke every minute (60 seconds)
     </script>
 
     <!-- Fetch weather information from weatherbit.io -->
     <script>
-        fetch('https://api.weatherbit.io/v2.0/current?city=London&key=YOUR_API_KEY')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            // Process and display weather information as needed
-            document.getElementById('weatherInfo').textContent = 'Weather information';
-        })
-        .catch(error => console.error('Error fetching weather:', error));
+        // Simulated weather information
+        var weatherInfo = "Current temperature: 25°C, Weather: Sunny";
+        $("#weatherInfo").text(weatherInfo);
     </script>
 
     <!-- JavaScript to remember client's last visit -->
