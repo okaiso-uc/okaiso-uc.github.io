@@ -94,6 +94,10 @@
         <h2>Weather Information</h2>
         <p id="weatherInfo">Loading...</p>
     </section>
+    <section id="digital-clock">
+        <h2>Digital Clock</h2>
+        <p id="clock">Loading...</p>
+    </section>
     <footer>
         <p>&copy; 2024 Seth Okai</p>
         <!-- Link to WAPH.html -->
@@ -130,19 +134,25 @@
             }
         }
     </script>
-    <!-- Fetch joke from jokeapi every minute -->
     <script>
-        setInterval(function() {
-            fetch('https://v2.jokeapi.dev/joke/Programming?type=single')
-            .then(response => response.json())
-            .then(data => {
+        // Fetch joke from JokeAPI and display on page load
+        async function fetchJoke() {
+            try {
+                const response = await fetch('https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit');
+                const data = await response.json();
                 console.log(data.joke);
                 document.getElementById('jokeContent').textContent = data.joke;
-            })
-            .catch(error => console.error('Error fetching joke:', error));
-        }, 60000); // Fetch a new joke every minute (60 seconds)
+            } catch (error) {
+                console.error('Error fetching joke:', error);
+            }
+        }
+
+        // Fetch joke from JokeAPI and display on page load
+        fetchJoke();
+
+        // Fetch a new joke every minute (60 seconds)
+        setInterval(fetchJoke, 60000);
     </script>
-    <!-- Fetch weather information from weatherbit.io -->
     <script>
         // Replace 'YOUR_API_KEY' with your actual Weatherbit API key
         var weatherApiKey = 'YOUR_API_KEY';
@@ -162,7 +172,6 @@
             var radius = canvas.height / 2;
             ctx.translate(radius, radius);
             radius = radius * 0.90;
-            setInterval(drawClock, 1000);
 
             function drawFace(ctx, radius) {
                 ctx.beginPath();
@@ -233,10 +242,12 @@
             }
 
             function drawClock() {
+                ctx.clearRect(-radius, -radius, 2 * radius, 2 * radius);
                 drawFace(ctx, radius);
                 drawNumbers(ctx, radius);
                 drawTime(ctx, radius);
             }
+            setInterval(drawClock, 1000);
         }
 
         drawClock();
