@@ -18,8 +18,8 @@
         <h2>Contact Information</h2>
         <p>453 Smiley Avenue Springdale OH</p>
         <p>Phone: 513-592-9077</p>
-        <p>Email: <span id="email">Show my email</span></p>
-        <button onclick="toggleEmail()">Toggle Email</button>
+        <p>Email: <span id="email" onclick="showhideEmail()">Show my email</span></p>
+        <input type="text" id="emailInput" style="display: none;">
     </section>
     <section id="background">
         <h2>Background</h2>
@@ -121,17 +121,51 @@
     </script>
     <!-- Function to show/hide email -->
     <script>
-        var emailVisible = false;
+        var shown = false;
 
-        function toggleEmail() {
-            var emailSpan = document.getElementById('email');
-            if (!emailVisible) {
-                emailSpan.textContent = 'okaiso@mail.uc.edu';
-                emailVisible = true;
+        function showhideEmail() {
+            if (shown) {
+                document.getElementById('email').textContent = "Show my email";
+                shown = false;
             } else {
-                emailSpan.textContent = 'Show my email';
-                emailVisible = false;
+                var input = document.getElementById('emailInput').value;
+                var encodedInput = encodeInput(input);
+                var encodedEmail = encodeURI(encodedInput);
+                var myemail = "<a href='mailto:" + encodedEmail + "'>" + encodedEmail + "</a>";
+                document.getElementById('email').innerHTML = myemail;
+                shown = true;
+                // Set email cookie
+                setCookie("email", encodedEmail, 365);
             }
+        }
+
+        function encodeInput(input) {
+            const encoded = document.createElement('div');
+            encoded.innerText = input;
+            return encoded.innerHTML;
+        }
+
+        // Retrieve and display email from cookie on page load
+        window.onload = function() {
+            var email = getCookie("email");
+            if (email !== "") {
+                document.getElementById('email').innerHTML = "<a href='mailto:" + email + "'>" + email + "</a>";
+                shown = true;
+            }
+        }
+
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = 'expires=' + d.toUTCString();
+            document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+        }
+
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+            return "";
         }
     </script>
     <script>
