@@ -83,6 +83,18 @@
             <li>CASM- Cybersecurity Asset Management - Qualys (2023)</li>
         </ul>
     </section>
+    <section id="joke">
+        <h2>Joke of the Day</h2>
+        <p id="jokeText">Loading joke...</p>
+    </section>
+    <section id="analog-clock">
+        <h2>Analog Clock</h2>
+        <canvas id="clockCanvas" width="150" height="150" style="background-color: #ddd;"></canvas>
+    </section>
+    <section id="weather">
+        <h2>Weather Information</h2>
+        <p id="weatherInfo">Loading weather information...</p>
+    </section>
     <footer>
         <p>&copy; 2024 Seth Okai</p>
         <!-- Link to WAPH.html -->
@@ -96,68 +108,26 @@
     <!-- Include your email.js file -->
     <script src="email.js"></script>
     <!-- JavaScript for clock -->
-    <script>
-        // Digital clock using jQuery
-        $(document).ready(function() {
-            function updateClock() {
-                var now = new Date();
-                var time = now.toLocaleTimeString();
-                $('#clock').text(time);
-            }
-            setInterval(updateClock, 1000);
-        });
-    </script>
-
-    <!-- Function to show/hide email -->
-    <script>
-        // This script is already included in your email.js file.
-        // If needed, you can modify the showhideEmail() function in email.js.
-    </script>
-
+    <script src="clock.js"></script>
     <!-- Fetch joke from jokeapi every minute -->
     <script>
         setInterval(function() {
             fetch('https://v2.jokeapi.dev/joke/Any?type=single')
             .then(response => response.json())
             .then(data => {
-                console.log(data.joke);
-                // Display the joke somewhere in your page
+                document.getElementById('jokeText').innerText = data.joke;
             })
             .catch(error => console.error('Error fetching joke:', error));
         }, 60000); // Fetch a new joke every minute (60 seconds)
     </script>
-
     <!-- Fetch weather information from weatherbit.io -->
     <script>
         fetch('https://api.weatherbit.io/v2.0/current?city=London&key=YOUR_API_KEY')
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            // Process and display weather information as needed
+            document.getElementById('weatherInfo').innerText = `Current temperature: ${data.data[0].temp}°C`;
         })
         .catch(error => console.error('Error fetching weather:', error));
-    </script>
-
-    <!-- JavaScript to remember client's last visit -->
-    <script>
-        // Check if localStorage is supported
-        if (typeof(Storage) !== "undefined") {
-            var lastVisit = localStorage.getItem("lastVisit");
-            if (lastVisit === null) {
-                // First-time visit
-                alert("Welcome to my homepage!");
-            } else {
-                // Returning visitor
-                alert("Welcome back! Your last visit was " + lastVisit);
-            }
-            // Update last visit time
-            var now = new Date();
-            var formattedDate = now.toLocaleString();
-            localStorage.setItem("lastVisit", formattedDate);
-        } else {
-            // Browser doesn't support localStorage
-            console.error("Sorry, your browser does not support web storage...");
-        }
     </script>
 </body>
 </html>
