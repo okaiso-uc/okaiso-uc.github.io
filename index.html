@@ -163,26 +163,47 @@
         .catch(error => console.error('Error fetching weather:', error));
     </script>
 
-    <!-- JavaScript to remember client's last visit -->
+    <!-- JavaScript to remember client's last visit using cookies -->
     <script>
-        // Check if localStorage is supported
-        if (typeof(Storage) !== "undefined") {
-            var lastVisit = localStorage.getItem("lastVisit");
-            if (lastVisit === null) {
-                // First-time visit
-                alert("Welcome to my homepage!");
-            } else {
-                // Returning visitor
-                alert("Welcome back! Your last visit was " + lastVisit);
-            }
-            // Update last visit time
-            var now = new Date();
-            var formattedDate = now.toLocaleString();
-            localStorage.setItem("lastVisit", formattedDate);
-        } else {
-            // Browser doesn't support localStorage
-            console.error("Sorry, your browser does not support web storage...");
+        // Function to set a cookie
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         }
+
+        // Function to get a cookie value
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        // Check if the cookie exists
+        var lastVisit = getCookie("lastVisit");
+        if (lastVisit === "") {
+            // First-time visit
+            alert("Welcome to my homepage!");
+        } else {
+            // Returning visitor
+            alert("Welcome back! Your last visit was " + lastVisit);
+        }
+
+        // Set cookie for the current visit
+        var now = new Date();
+        var formattedDate = now.toUTCString();
+        setCookie("lastVisit", formattedDate, 365); // Cookie expires in 1 year
     </script>
 </body>
 </html>
