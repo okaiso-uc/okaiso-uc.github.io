@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seth Okai - Professional Profile</title>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <header class="container">
         <h1>Seth Okai</h1>
         <img src="Images/headshot.jpg" alt="Seth Okai's Headshot" class="img-fluid">
-        <p>Security Analyst</p>
+        <p class="lead">Security Analyst</p>
     </header>
-    <section id="contact"  class="container mt-4">
+    <section id="contact" class="container mt-4">
         <h2>Contact Information</h2>
         <p>453 Smiley Avenue Springdale OH</p>
         <p>Phone: 513-592-9077</p>
@@ -20,7 +21,7 @@
         <script src="email.js"></script>
         <input type="text" id="emailInput" style="display: none;">
     </section>
-    <section id="background">
+    <section id="background" class="container mt-4">
         <h2>Background</h2>
         <h3>Education</h3>
         <p>Information Technology / Associate of Applied Business</p>
@@ -83,26 +84,22 @@
     </section>
     <section id="joke" class="container mt-4">
         <h2>Joke of the Day</h2>
-        <p id="jokeContent">Loading...</p>
+        <p id="jokeContent" class="lead">Loading...</p>
     </section>
-    <section id="analog-clock">
+    <section id="analog-clock" class="container mt-4">
         <h2>Analog Clock</h2>
         <canvas id="analogClock" width="150" height="150" style="background-color:#999"></canvas>
     </section>
-     <section id="weather" class="container mt-4">
+    <section id="weather" class="container mt-4">
         <h2>Weather Information</h2>
-        <p id="weatherInfo">Loading...</p>
-    </section>
-    </section>
-    <section id="digital-clock">
-        <p id="clock">Loading...</p>
+        <p id="weatherInfo" class="lead">Loading...</p>
     </section>
     <footer class="container mt-4">
         <p>&copy; 2024 Seth Okai</p>
         <!-- Link to WAPH.html -->
         <p><a href="waph.html">Go to WAPH Site</a></p>
         <!-- Digital clock -->
-        <p id="clock"></p>
+        <p id="clock">Loading...</p>
     </footer>
 
     <!-- jQuery library -->
