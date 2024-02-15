@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seth Okai - Professional Profile</title>
-    <style>
-        /* Add your CSS styling here */
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <header>
+    <header class="container">
         <h1>Seth Okai</h1>
-        <img src="Images/headshot.jpg" alt="Seth Okai's Headshot">
+        <img src="Images/headshot.jpg" alt="Seth Okai's Headshot" class="img-fluid">
         <p>Security Analyst</p>
     </header>
-    <section id="contact">
+    <section id="contact"  class="container mt-4">
         <h2>Contact Information</h2>
         <p>453 Smiley Avenue Springdale OH</p>
         <p>Phone: 513-592-9077</p>
@@ -34,7 +32,7 @@
         <p>Pertinent Coursework: Cybercrime, Network Security, Network Infrastructure, contemporary database systems, System analysis and design.</p>
         <p>2022 - 2025</p>
     </section>
-    <section id="experience">
+    <section id="experience" class="container mt-4">
         <h2>Work Experience</h2>
         <p>Cybersecurity College Intern</p>
         <p>Ohio Department of Administrative services.</p>
@@ -53,7 +51,7 @@
             <li>May, 2022 - August, 2022</li>
         </ul>
     </section>
-    <section id="skills">
+    <section id="skills" class="container mt-4">
         <h2>Skills</h2>
         <h3>Professional Skills</h3>
         <ul>
@@ -70,12 +68,12 @@
             <li>Intrusion detection</li>
         </ul>
     </section>
-    <section id="projects">
+    <section id="projects" class="container mt-4">
         <h2>Relevant Projects</h2>
         <p>Project: Censible Chrome Extension - Best Social Impact Hack, RevolutionUC Hackathon 2023</p>
         <p>Developed a chrome extension called Censible that filters out inappropriate images and text in a browser to create a safer browsing experience for parents and children, and people with different types of fears, such as arachnophobia. Censible uses a combination of artificial intelligence and user-defined filters to detect and block unwanted content.</p>
     </section>
-    <section id="certifications">
+    <section id="certifications" class="container mt-4">
         <h2>Certifications</h2>
         <ul>
             <li>CC—Certified in Cybersecurity—(ISC)2 (2023)</li>
@@ -83,7 +81,7 @@
             <li>CASM- Cybersecurity Asset Management - Qualys (2023)</li>
         </ul>
     </section>
-    <section id="joke">
+    <section id="joke" class="container mt-4">
         <h2>Joke of the Day</h2>
         <p id="jokeContent">Loading...</p>
     </section>
@@ -91,7 +89,7 @@
         <h2>Analog Clock</h2>
         <canvas id="analogClock" width="150" height="150" style="background-color:#999"></canvas>
     </section>
-     <section id="weather">
+     <section id="weather" class="container mt-4">
         <h2>Weather Information</h2>
         <p id="weatherInfo">Loading...</p>
     </section>
@@ -99,7 +97,7 @@
     <section id="digital-clock">
         <p id="clock">Loading...</p>
     </section>
-    <footer>
+    <footer class="container mt-4">
         <p>&copy; 2024 Seth Okai</p>
         <!-- Link to WAPH.html -->
         <p><a href="waph.html">Go to WAPH Site</a></p>
@@ -109,6 +107,7 @@
 
     <!-- jQuery library -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Clock script -->
     <script>
         $(document).ready(function() {
