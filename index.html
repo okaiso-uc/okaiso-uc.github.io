@@ -91,9 +91,10 @@
         <h2>Analog Clock</h2>
         <canvas id="analogClock" width="150" height="150" style="background-color:#999"></canvas>
     </section>
-    <section id="weather">
+     <section id="weather">
         <h2>Weather Information</h2>
         <p id="weatherInfo">Loading...</p>
+    </section>
     </section>
     <section id="digital-clock">
         <p id="clock">Loading...</p>
@@ -162,14 +163,30 @@
     })
     </script>
     <script>
-        var weatherApiKey = 'YOUR_API_KEY';
-        fetch('https://api.weatherbit.io/v2.0/current?city=London&key=' + weatherApiKey)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            // Process and display weather information as needed
-        })
-        .catch(error => console.error('Error fetching weather:', error));
+      <script>
+        $(document).ready(function() {
+            var weatherApiKey = '49b86344f2674bc086d13b64962d743c'; 
+            var apiUrl = 'https://api.weatherbit.io/v2.0/current?city=London&key=' + weatherApiKey;
+
+            $.get(apiUrl, function(data) {
+                console.log(data); // Log the data to the console for debugging
+                // Extract the relevant weather information from the data and update the HTML
+                var temperature = data.data[0].temp;
+                var description = data.data[0].weather.description;
+                var windSpeed = data.data[0].wind_spd;
+                var humidity = data.data[0].rh;
+
+                var weatherInfo = `
+                    <p>Temperature: ${temperature}°C</p>
+                    <p>Description: ${description}</p>
+                    <p>Wind Speed: ${windSpeed} m/s</p>
+                    <p>Humidity: ${humidity}%</p>
+                `;
+
+                $('#weatherInfo').html(weatherInfo);
+            });
+        });
+    </script>
     </script>
     <!-- Analog clock script -->
     <script>
