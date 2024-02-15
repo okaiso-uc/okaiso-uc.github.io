@@ -122,8 +122,14 @@
     </script>
    
     <script>
-        var shown = false;
+         function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
 
+        // Function to get cookie
         function getCookie(cname) {
             var name = cname + "=";
             var decodedCookie = decodeURIComponent(document.cookie);
@@ -140,21 +146,22 @@
             return "";
         }
 
-        // Check if the cookie exists
-        var lastVisit = getCookie("lastVisit");
-        if (lastVisit === "") {
-            // First-time visit
-            alert("Welcome to my homepage!");
-        } else {
-            // Returning visitor
-            alert("Welcome back! Your last visit was " + lastVisit);
-        }
+        $(document).ready(function() {
+            // Check if the cookie exists
+            var lastVisit = getCookie("lastVisit");
+            if (lastVisit === "") {
+                // First-time visit
+                alert("Welcome to my homepage!");
+            } else {
+                // Returning visitor
+                alert("Welcome back! Your last visit was " + lastVisit);
+            }
 
-        // Set cookie for the current visit
-        var now = new Date();
-        var formattedDate = now.toUTCString();
-        setCookie("lastVisit", formattedDate, 365); // Cookie expires in 1 year
-       
+            // Set cookie for the current visit
+            var now = new Date();
+            var formattedDate = now.toUTCString();
+            setCookie("lastVisit", formattedDate, 365); // Cookie expires in 1 year
+        });
     </script>
     <script>
         $.get("https://v2.jokeapi.dev/joke/Programming?type=single",
