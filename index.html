@@ -156,26 +156,12 @@
        
     </script>
     <script>
-        // Fetch joke from JokeAPI and display on page load
-        async function fetchJoke() {
-            try {
-                const response = await fetch('https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist,explicit');
-                const data = await response.json();
-                console.log(data.joke);
-                document.getElementById('jokeContent').textContent = data.joke;
-            } catch (error) {
-                console.error('Error fetching joke:', error);
-            }
-        }
-
-        // Fetch joke from JokeAPI and display on page load
-        fetchJoke();
-
-        // Fetch a new joke every minute (60 seconds)
-        setInterval(fetchJoke, 60000);
+    $.get("https://v2.jokeapi.dev/joke/Programming?type=single",
+    function(result) {
+        console.log("From jokeAPI: " + JSON.stringify(result));
+    })
     </script>
     <script>
-        // Replace 'YOUR_API_KEY' with your actual Weatherbit API key
         var weatherApiKey = 'YOUR_API_KEY';
         fetch('https://api.weatherbit.io/v2.0/current?city=London&key=' + weatherApiKey)
         .then(response => response.json())
