@@ -157,13 +157,12 @@
        
     </script>
     <script>
-    $.get("https://v2.jokeapi.dev/joke/Programming?type=single",
-    function(result) {
-        console.log("From jokeAPI: " + JSON.stringify(result));
-    })
+        $.get("https://v2.jokeapi.dev/joke/Programming?type=single",
+        function(result) {
+            console.log("From jokeAPI: " + JSON.stringify(result));
+        });
     </script>
     <script>
-      <script>
         $(document).ready(function() {
             var weatherApiKey = '49b86344f2674bc086d13b64962d743c'; 
             var apiUrl = 'https://api.weatherbit.io/v2.0/current?city=London&key=' + weatherApiKey;
@@ -186,7 +185,6 @@
                 $('#weatherInfo').html(weatherInfo);
             });
         });
-    </script>
     </script>
     <!-- Analog clock script -->
     <script>
