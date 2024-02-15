@@ -83,10 +83,7 @@
             <li>CASM- Cybersecurity Asset Management - Qualys (2023)</li>
         </ul>
     </section>
-    <section id="joke">
-        <h2>Joke of the Day</h2>
-        <p id="jokeContent">Loading...</p>
-    </section>
+
     <section id="analog-clock">
         <h2>Analog Clock</h2>
         <canvas id="analogClock" width="150" height="150" style="background-color:#999"></canvas>
@@ -158,8 +155,12 @@
     </script>
     <script>
         $.get("https://v2.jokeapi.dev/joke/Programming?type=single",
-        function(result) {
-            console.log("From jokeAPI: " + JSON.stringify(result));
+    function(result) {
+        console.log("From jokeAPI: " + JSON.stringify(result));
+    })
+    .fail(function(xhr, status, error) {
+        console.error("Error fetching joke:", error);
+    });
         });
     </script>
     <script>
