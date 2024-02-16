@@ -27,25 +27,24 @@
             border-radius: 10px;
         }
         .flag-counter-container {
-    display: inline-block;
-    margin-top: 10px; /* Adjust margin as needed */
-    padding: 10px; /* Add padding for better spacing */
-    background-color: #ffffff; /* Set background color */
-    border: 1px solid #cccccc; /* Add border for separation */
-    border-radius: 5px; /* Add border radius for rounded corners */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
-}
+            display: inline-block;
+            margin-top: 10px; /* Adjust margin as needed */
+            padding: 10px; /* Add padding for better spacing */
+            background-color: #ffffff; /* Set background color */
+            border: 1px solid #cccccc; /* Add border for separation */
+            border-radius: 5px; /* Add border radius for rounded corners */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+        }
 
-.flag-counter-container img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
-        
-  #analogClock {
-            background-color: transparent;
+        .flag-counter-container img {
+            display: block;
+            max-width: 100%;
+            height: auto;
         }
         
+        #analogClock {
+            background-color: transparent;
+        }
     </style>
 </head>
 <body>
@@ -63,11 +62,6 @@
             <script src="email.js"></script>
             <input type="text" id="emailInput" style="display: none;">
         </div>
-        <script src="app.js"></script>
-         <script>
-      
-        updateThreatMeter('high');
-    </script>
     </section>
     <section id="background" class="container mt-4">
         <h2>Background</h2>
@@ -139,26 +133,56 @@
         <p id="weatherInfo" class="lead">Loading...</p>
     </section>
     <footer class="container mt-4">
-         <section id="analog-clock" class="container mt-4">
-        <canvas id="analogClock" width="150" height="150" style="background-color:transparent"></canvas>
-    </section>       
+        <section id="analog-clock" class="container mt-4">
+            <canvas id="analogClock" width="150" height="150" style="background-color:transparent"></canvas>
+        </section>       
         <p id="clock">Loading...</p>
-      <div class="flag-counter-container">
-          <a href="https://info.flagcounter.com/xlEe"><img src="https://s11.flagcounter.com/count2/xlEe/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
-      </div>
-  <section id="cyber-threat" class="container mt-4">
-    <h2>Cyber Threat Meter</h2>
-    <div class="progress">
-        <div id="threat-meter" class="progress-bar bg-danger" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">Low</div>
-    </div>
-</section>
-
+        <div class="flag-counter-container">
+            <a href="https://info.flagcounter.com/xlEe"><img src="https://s11.flagcounter.com/count2/xlEe/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+        </div>
+        <section id="cyber-threat" class="container mt-4">
+            <h2>Cyber Threat Meter</h2>
+            <div class="progress">
+                <div id="threat-meter" class="progress-bar bg-danger" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">Low</div>
+            </div>
+        </section>
         <p>&copy; 2024 Seth Okai</p>
         <p><a href="waph.html">Go to WAPH Site</a></p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function updateThreatMeter(threatLevel) {
+            var threatMeter = document.getElementById('threat-meter');
+            switch (threatLevel) {
+                case 'low':
+                    threatMeter.style.width = '25%';
+                    threatMeter.innerText = 'Low';
+                    threatMeter.classList.remove('bg-warning', 'bg-danger');
+                    threatMeter.classList.add('bg-success');
+                    break;
+                case 'medium':
+                    threatMeter.style.width = '50%';
+                    threatMeter.innerText = 'Medium';
+                    threatMeter.classList.remove('bg-success', 'bg-danger');
+                    threatMeter.classList.add('bg-warning');
+                    break;
+                case 'high':
+                    threatMeter.style.width = '100%';
+                    threatMeter.innerText = 'High';
+                    threatMeter.classList.remove('bg-success', 'bg-warning');
+                    threatMeter.classList.add('bg-danger');
+                    break;
+                default:
+                    threatMeter.style.width = '25%';
+                    threatMeter.innerText = 'Low';
+                    threatMeter.classList.remove('bg-warning', 'bg-danger');
+                    threatMeter.classList.add('bg-success');
+            }
+        }
+        updateThreatMeter('high');
+    </script>
     <script>
         $(document).ready(function() {
             function updateClock() {
@@ -169,76 +193,26 @@
             setInterval(updateClock, 1000);
         });
     </script>
-   
-    <script>
-         function setCookie(cname, cvalue, exdays) {
-            var d = new Date();
-            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-            var expires = "expires="+d.toUTCString();
-            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-        }
-
-        function getCookie(cname) {
-            var name = cname + "=";
-            var decodedCookie = decodeURIComponent(document.cookie);
-            var ca = decodedCookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-        $(document).ready(function() {
-            var lastVisit = getCookie("lastVisit");
-            if (lastVisit === "") {
-                alert("Welcome to my homepage!");
-            } else {
-                alert("Welcome back! Your last visit was " + lastVisit);
-            }
-
-            var now = new Date();
-            var formattedDate = now.toUTCString();
-            setCookie("lastVisit", formattedDate, 365); 
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $.get("https://v2.jokeapi.dev/joke/Programming?type=single",
-            function(result) {
-                $('#jokeContent').text(result.joke);
-            });
-        });
-    </script>
+    <script src="https://v2.jokeapi.dev/joke/Programming?type=single"></script>
     <script>
         $(document).ready(function() {
             var weatherApiKey = '49b86344f2674bc086d13b64962d743c'; 
             var apiUrl = 'https://api.weatherbit.io/v2.0/current?city=London&key=' + weatherApiKey;
-
             $.get(apiUrl, function(data) {
-                console.log(data);
                 var temperature = data.data[0].temp;
                 var description = data.data[0].weather.description;
                 var windSpeed = data.data[0].wind_spd;
                 var humidity = data.data[0].rh;
-
                 var weatherInfo = `
                     <p>Temperature: ${temperature}°C</p>
                     <p>Description: ${description}</p>
                     <p>Wind Speed: ${windSpeed} m/s</p>
                     <p>Humidity: ${humidity}%</p>
                 `;
-
                 $('#weatherInfo').html(weatherInfo);
             });
         });
     </script>
-
     <script>
         function drawClock() {
             var canvas = document.getElementById('analogClock');
@@ -246,14 +220,12 @@
             var radius = canvas.height / 2;
             ctx.translate(radius, radius);
             radius = radius * 0.90;
-
             function drawFace(ctx, radius) {
                 ctx.beginPath();
                 ctx.arc(0, 0, radius, 0, 2 * Math.PI);
                 ctx.fillStyle = 'white';
                 ctx.fill();
                 var grad;
-
                 grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
                 grad.addColorStop(0, '#333');
                 grad.addColorStop(0.5, 'white');
@@ -266,7 +238,6 @@
                 ctx.fillStyle = '#333';
                 ctx.fill();
             }
-
             function drawNumbers(ctx, radius) {
                 var ang;
                 var num;
@@ -284,26 +255,19 @@
                     ctx.rotate(-ang);
                 }
             }
-
             function drawTime(ctx, radius) {
                 var now = new Date();
                 var hour = now.getHours();
                 var minute = now.getMinutes();
                 var second = now.getSeconds();
-                //hour
                 hour = hour % 12;
-                hour = (hour * Math.PI / 6) +
-                    (minute * Math.PI / (6 * 60)) +
-                    (second * Math.PI / (360 * 60));
+                hour = (hour * Math.PI / 6) + (minute * Math.PI / (6 * 60)) + (second * Math.PI / (360 * 60));
                 drawHand(ctx, hour, radius * 0.5, radius * 0.07);
-                //minute
                 minute = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
                 drawHand(ctx, minute, radius * 0.8, radius * 0.07);
-                // second
                 second = (second * Math.PI / 30);
                 drawHand(ctx, second, radius * 0.9, radius * 0.02);
             }
-
             function drawHand(ctx, pos, length, width) {
                 ctx.beginPath();
                 ctx.lineWidth = width;
@@ -314,7 +278,6 @@
                 ctx.stroke();
                 ctx.rotate(-pos);
             }
-
             function drawClock() {
                 ctx.clearRect(-radius, -radius, 2 * radius, 2 * radius);
                 drawFace(ctx, radius);
@@ -323,7 +286,6 @@
             }
             setInterval(drawClock, 1000);
         }
-
         drawClock();
     </script>
 </body>
