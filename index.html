@@ -28,12 +28,12 @@
         }
         .flag-counter-container {
             display: inline-block;
-            margin-top: 10px; /* Adjust margin as needed */
-            padding: 10px; /* Add padding for better spacing */
-            background-color: #ffffff; /* Set background color */
-            border: 1px solid #cccccc; /* Add border for separation */
-            border-radius: 5px; /* Add border radius for rounded corners */
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
 
         .flag-counter-container img {
@@ -44,12 +44,6 @@
         
         #analogClock {
             background-color: transparent;
-        }
-
-        /* Weather icon styles */
-        #weatherIcon {
-            font-size: 48px; /* Adjust icon size as needed */
-            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -137,8 +131,6 @@
     <section id="weather" class="container mt-4">
         <h2>Weather Information</h2>
         <p id="weatherInfo" class="lead">Loading...</p>
-        <!-- Weather icon will be displayed here -->
-        <div id="weatherIcon"></div>
     </section>
     <footer class="container mt-4">
         <section id="analog-clock" class="container mt-4">
@@ -201,7 +193,51 @@
             setInterval(updateClock, 1000);
         });
     </script>
-    <script src="https://v2.jokeapi.dev/joke/Programming?type=single"></script>
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        $(document).ready(function() {
+            var lastVisit = getCookie("lastVisit");
+            if (lastVisit === "") {
+                alert("Welcome to my homepage!");
+            } else {
+                alert("Welcome back! Your last visit was " + lastVisit);
+            }
+
+            var now = new Date();
+            var formattedDate = now.toUTCString();
+            setCookie("lastVisit", formattedDate, 365); 
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $.get("https://v2.jokeapi.dev/joke/Programming?type=single",
+            function(result) {
+                $('#jokeContent').text(result.joke);
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
             var weatherApiKey = '49b86344f2674bc086d13b64962d743c'; 
@@ -218,11 +254,6 @@
                     <p>Humidity: ${humidity}%</p>
                 `;
                 $('#weatherInfo').html(weatherInfo);
-
-                // Display weather icon
-                var weatherIcon = data.data[0].weather.icon;
-                var iconUrl = 'https://www.weatherbit.io/static/img/icons/' + weatherIcon + '.png';
-                $('#weatherIcon').html(`<img src="${iconUrl}" alt="Weather Icon">`);
             });
         });
     </script>
