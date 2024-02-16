@@ -45,6 +45,12 @@
         #analogClock {
             background-color: transparent;
         }
+
+        /* Weather icon styles */
+        #weatherIcon {
+            font-size: 48px; /* Adjust icon size as needed */
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -131,6 +137,8 @@
     <section id="weather" class="container mt-4">
         <h2>Weather Information</h2>
         <p id="weatherInfo" class="lead">Loading...</p>
+        <!-- Weather icon will be displayed here -->
+        <div id="weatherIcon"></div>
     </section>
     <footer class="container mt-4">
         <section id="analog-clock" class="container mt-4">
@@ -210,6 +218,11 @@
                     <p>Humidity: ${humidity}%</p>
                 `;
                 $('#weatherInfo').html(weatherInfo);
+
+                // Display weather icon
+                var weatherIcon = data.data[0].weather.icon;
+                var iconUrl = 'https://www.weatherbit.io/static/img/icons/' + weatherIcon + '.png';
+                $('#weatherIcon').html(`<img src="${iconUrl}" alt="Weather Icon">`);
             });
         });
     </script>
