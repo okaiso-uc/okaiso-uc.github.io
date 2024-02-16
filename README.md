@@ -16,35 +16,35 @@ For this individual project, I developed a Professional Profile Website and depl
 
 ### Website URL and GitHub Repository
 
-- **Website URL**: [Click here to visit my deployed website](https://your-website.github.io)
-- **GitHub Repository**: [Click here to view the project folder on GitHub](https://github.com/your-username/your-repo/tree/main/individual-project1)
+- **Website URL**: [Seth Okai's Professional Profile](https://sethokai.github.io)
+- **GitHub Repository**: [Project Repository](https://github.com/sethokai/sethokai.github.io/tree/main/individual-project1)
 
 ## General Requirements
 
-I successfully created and deployed a personal website on GitHub cloud (`github.io`). The website includes essential components such as my name, a professional headshot, contact information, educational background, work experiences, and skills. Additionally, I created a link to a new HTML page introducing the "Web Application Programming and Hacking" course and related hands-on projects.
+I successfully created and deployed a personal website on GitHub cloud (`github.io`). The website includes essential components such as my name, a professional headshot, contact information, educational background, work experiences, and skills. Additionally, I created a new HTML page to introduce the "Web Application Programming and Hacking" course and related hands-on projects, providing comprehensive information about the course and its objectives.
 
 ## Non-technical Requirements
 
-To meet the non-technical requirements, I utilized an open-source CSS framework, Bootstrap, to enhance the styling and layout of my website. I also included a page tracker to monitor visitor activity on my website.
+To meet the non-technical requirements, I utilized the Bootstrap CSS framework to enhance the styling and layout of my website. This framework allowed me to create a visually appealing and professional-looking website layout while ensuring responsiveness across different devices and screen sizes. Furthermore, I included a page tracker feature to monitor visitor activity on my website, providing insights into user engagement and behavior.
 
 ## Technical Requirements
 
 ### Basic JavaScript Code
 
 I implemented basic JavaScript functionalities using jQuery and other open-source JavaScript frameworks/libraries. This included:
-- Creation of a digital clock and an analog clock to display real-time time information.
-- Implementation of functionality to show/hide my email address upon user interaction.
-- Integration of additional JavaScript functionality of my choice to enhance user experience.
+- Creation of a digital clock and an analog clock to display real-time time information, providing visitors with an interactive and dynamic experience.
+- Implementation of functionality to show/hide my email address upon user interaction, enhancing user privacy and control over personal information.
+- Integration of additional JavaScript functionality of my choice, such as a global cyber threat meter, which dynamically updates to reflect the current threat level, providing valuable insights into cybersecurity trends and risks.
 
 ### Web APIs Integration
 
 I integrated two public Web APIs to enrich the content of my website:
-1. I integrated the jokeAPI to display a new joke on the webpage every 1 minute. This added an element of humor and engagement to the website.
-2. I integrated a public API with graphics to display weather information on the webpage. This provided visitors with real-time weather updates directly on the website.
+1. I integrated the jokeAPI to display a new joke on the webpage every 1 minute, enhancing user engagement and entertainment value.
+2. I integrated the Weatherbit API to display real-time weather information on the webpage, offering visitors instant access to weather forecasts and conditions, improving the overall user experience and utility of the website.
 
 ### JavaScript Cookies
 
-To enhance user experience and personalize interactions, I utilized JavaScript cookies to remember the client's last visit to the website. Depending on whether it was the first visit or a returning visit, a personalized message was displayed to the user.
+To enhance user experience and personalize interactions, I utilized JavaScript cookies to remember the client's last visit to the website. Depending on whether it was the first visit or a returning visit, a personalized message was displayed to the user, creating a more welcoming and user-friendly environment.
 
 ## Conclusion
 
