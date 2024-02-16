@@ -4,14 +4,11 @@
 
 ## Student: Seth Okai
 
+![Seths's Headshot](Images/headshot.jpg)
+
 # Individual Project 1
 
 ## Front-end Web Development with a Professional Profile Website on github.io cloud service
-
-
-![Seths's Headshot](Images/headshot.jpg)
-
-
 
 ## Overview
 
