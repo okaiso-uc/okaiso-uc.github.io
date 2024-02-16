@@ -42,7 +42,9 @@ I implemented basic JavaScript functionalities using jQuery and other open-sourc
 ### Web APIs Integration
 
 I integrated two public Web APIs to enrich the content of my website:
+
 1. I integrated the jokeAPI to display a new joke on the webpage every 1 minute, enhancing user engagement and entertainment value.
+   
 2. I integrated the Weatherbit API to display real-time weather information on the webpage, offering visitors instant access to weather forecasts and conditions, improving the overall user experience and utility of the website.
 
 ### JavaScript Cookies
