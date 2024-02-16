@@ -1,4 +1,17 @@
-# Individual Project Report: Front-end Web Development with a Professional Profile Website
+# WAPH-Web Application Programming and Hacking
+
+## Instructor: Dr. Phu Phung
+
+## Student: Seth Okai
+
+# Individual Project 1
+
+## Front-end Web Development with a Professional Profile Website on github.io cloud service
+
+
+![Seths's Headshot](Images/headshot.jpg)
+
+
 
 ## Overview
 
