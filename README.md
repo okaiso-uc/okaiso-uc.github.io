@@ -32,8 +32,11 @@ To meet the non-technical requirements, I utilized the Bootstrap CSS framework t
 ### Basic JavaScript Code
 
 I implemented basic JavaScript functionalities using jQuery and other open-source JavaScript frameworks/libraries. This included:
+
 - Creation of a digital clock and an analog clock to display real-time time information, providing visitors with an interactive and dynamic experience.
+  
 - Implementation of functionality to show/hide my email address upon user interaction, enhancing user privacy and control over personal information.
+  
 - Integration of additional JavaScript functionality of my choice, such as a global cyber threat meter, which dynamically updates to reflect the current threat level, providing valuable insights into cybersecurity trends and risks.
 
 ### Web APIs Integration
