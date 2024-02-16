@@ -16,8 +16,8 @@ For this individual project, I developed a Professional Profile Website and depl
 
 ### Website URL and GitHub Repository
 
-- **Website URL**: [Seth Okai's Professional Profile](https://sethokai.github.io)
-- **GitHub Repository**: [Project Repository](https://github.com/sethokai/sethokai.github.io/tree/main/individual-project1)
+- **Website URL**: [https://okaiso-uc.github.io](https://okaiso-uc.github.io)
+- **GitHub Repository**: [https://github.com/okaiso-uc/okaiso-uc.github.io.git](https://github.com/okaiso-uc/okaiso-uc.github.io.git)
 
 ## General Requirements
 
